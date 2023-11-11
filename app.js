@@ -25,7 +25,7 @@ const app = express();
 // Set EJS as templating engine (if needed)
 // app.set("view engine", "ejs");
 
-const PORT = config.get("port") || 27027;
+const PORT = process.env.PORT || 27027;
 
 // Define a route for getting posts
 // app.get('/api/posts', async (req, res) => {
