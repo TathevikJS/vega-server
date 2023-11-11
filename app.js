@@ -7,6 +7,13 @@ const Post = require('./models/Post')
 
 app.use(cors());
 app.use(express.json());
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", '*');
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+    next();
+});
 
 // MongoDB connection
 mongoose.connect("mongodb+srv://bpoghos94:1q2w3e4r5t6y7u8i9o0p@vega.iwqfhfa.mongodb.net/architect?retryWrites=true&w=majority", {
