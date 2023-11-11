@@ -2,13 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const { Router, request } = require('express')
 const config = require('config')
-const path = require('path')
 const Post = require('./models/Post')
-const router = Router()
-const multer = require('multer')
-const fs = require('fs');
 
 app.use(cors({
     origin: '*',
