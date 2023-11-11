@@ -5,11 +5,7 @@ const app = express();
 const config = require('config')
 const Post = require('./models/Post')
 
-app.use(cors({
-    origin: '*',
-    methods: 'GET, POST, PATCH, DELETE',
-    allowedHeaders: 'Content-Type, Authorization',
-}));
+app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
@@ -22,7 +18,7 @@ mongoose.connect("mongodb+srv://bpoghos94:1q2w3e4r5t6y7u8i9o0p@vega.iwqfhfa.mong
 // Set EJS as templating engine (if needed)
 app.set("view engine", "ejs");
 
-const PORT = config.get("port") || 27017;
+const PORT = config.get("port") || 3000;
 
 // Define a route for getting posts
 app.get('/api/posts', async (req, res) => {
