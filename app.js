@@ -25,7 +25,7 @@ const app = express();
 // Set EJS as templating engine (if needed)
 // app.set("view engine", "ejs");
 
-let PORT = config.get("port") || 3000;
+const PORT = config.get("port") || 27027;
 
 // Define a route for getting posts
 // app.get('/api/posts', async (req, res) => {
@@ -96,26 +96,26 @@ app.get('/', async (req, res) => {
 // });
 
 
-// app.delete('/api/posts/del/:id', async(req,res)=>{
-//     const {id} = req.params;
-//     console.log(id);
-//     try{
-//         const data = await Post.findById(id)
-//         console.log(data);
-//         if (!data) {
-//             return res.status(404).json({ error: 'Post not found' });
-//         }
-//         if(data){
-//             console.log(data);
-//             const post = await Post.findOneAndDelete(id)
-//             res.send(post);
-//             return;
-//         }
-//         res.status(400).send({error: "You don't have access to this post!!!"})
-//     } catch{
-//         res.status(400).send({error: "Something went wrong"})
-//     }
-// })
+app.delete('/api/posts/del/:id', async(req,res)=>{
+    const {id} = req.params;
+    console.log(id);
+    try{
+        const data = await Post.findById(id)
+        console.log(data);
+        if (!data) {
+            return res.status(404).json({ error: 'Post not found' });
+        }
+        if(data){
+            console.log(data);
+            const post = await Post.findOneAndDelete(id)
+            res.send(post);
+            return;
+        }
+        res.status(400).send({error: "You don't have access to this post!!!"})
+    } catch{
+        res.status(400).send({error: "Something went wrong"})
+    }
+})
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
