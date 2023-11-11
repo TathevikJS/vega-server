@@ -26,7 +26,7 @@ mongoose.connect("mongodb+srv://bpoghos94:1q2w3e4r5t6y7u8i9o0p@vega.iwqfhfa.mong
 // Set EJS as templating engine (if needed)
 app.set("view engine", "ejs");
 
-const PORT = process.env.MNG_PORT || 27017;
+const PORT = process.env.NODE_ENV || 27017;
 
 // Define a route for getting posts
 app.get('/api/posts', async (req, res) => {
