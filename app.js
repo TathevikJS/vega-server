@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const { Router, request } = require('express')
-const config = require('config')
 const path = require('path')
 const Post = require('./models/Post')
 const router = Router()
@@ -17,16 +16,17 @@ app.use(cors({
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect("mongodb+srv://bpoghos94:1q2w3e4r5t6y7u8i9o0p@vega.iwqfhfa.mongodb.net/architect?retryWrites=true", {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true
-});
+}).then(connect => console.log('connected to mongodb..'))
+.catch(e => console.log('could not connect to mongodb', e));
 
 // Set EJS as templating engine (if needed)
 app.set("view engine", "ejs");
 
-const PORT = process.env.MONGODB_URI || 27017;
+const PORT = process.env.PORT || 5000;
 
 // Define a route for getting posts
 app.get('/api/posts', async (req, res) => {
